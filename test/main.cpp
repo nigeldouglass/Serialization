@@ -1,4 +1,6 @@
-#include "../../src/Field.h"
+#include "../src/Field.h"
+#include <iostream>
+#include <vector>
 
 int main(){
     integer();

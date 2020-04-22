@@ -17,7 +17,6 @@ std::vector<std::byte> toByte(int integer);
 class field{
 
     public:
-        field(){};
         void setName(const std::string name);
         int getBytes(std::vector<std::byte>* dest, int pointer);
         int getSize();
@@ -29,6 +28,7 @@ class field{
         static field* Boolean(const std::string name, bool value);
         static field* Int64(const std::string name, int64_t value);
     private:
+        field(){};
         std::byte storageType = storageType::FIELD;
         short nameLength;
         std::vector<std::byte> name;

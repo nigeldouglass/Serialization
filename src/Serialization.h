@@ -21,11 +21,16 @@ class Serialization{
         static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<std::byte> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, char value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, short value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<short> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, int value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, int64_t value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int64_t> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, double value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, bool value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<bool> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, std::string value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<std::string> value);
 
         static std::byte readByte(std::vector<std::byte> src, int pointer);
         static char readChar(std::vector<std::byte> src, int pointer);

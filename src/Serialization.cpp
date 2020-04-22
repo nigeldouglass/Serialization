@@ -8,6 +8,9 @@ void Serialization::printBytes(const std::vector<std::byte>* data) {
 	std::cout << "Finished Printing Bytes" << std::endl;
 }
 
+/*
+*	Bytes
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::byte value) {
 	dest->push_back(value);
 	return pointer++;
@@ -20,6 +23,9 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::ve
 	return pointer;
 }
 
+/*
+*	Char
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, char value) {
 	for (size_t i = 0; i < std::strlen(&value); i++) {
 		dest->push_back((std::byte)value[&i]);
@@ -28,6 +34,9 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, char va
 	return pointer;
 }
 
+/*
+*	Short
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, short value) {
 	dest->push_back((std::byte)((value >> 8) & 0xff));
 	pointer++;
@@ -36,6 +45,16 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, short v
 	return pointer;
 }
 
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<short> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, value.at(i));
+	}
+	return pointer;
+}
+
+/*
+*	Int
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, int value) {
 	dest->push_back((std::byte)((value >> 24) & 0xff));
 	pointer++;
@@ -48,6 +67,16 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, int val
 	return pointer;
 }
 
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, value.at(i));
+	}
+	return pointer;
+}
+
+/*
+*	Int64
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, int64_t value) {
 	dest->push_back((std::byte)((value >> 56) & 0xff));
 	pointer++;
@@ -68,20 +97,50 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, int64_t
 	return pointer;
 }
 
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int64_t> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, value.at(i));
+	}
+	return pointer;
+}
+
+/*
+*	Double
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, double value) {
 	//int64_t doub = value;
 	//return Serialization::writeBytes(dest, pointer, doub);
 	return 0;
 }
 
+/*
+*	Bool
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, bool value) {
 	dest->push_back((std::byte)(value ? 1 : 0));
 	return pointer++;
 }
 
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<bool> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, value.at(i));
+	}
+	return pointer;
+}
+
+/*
+*	String
+*/
 int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::string value) {
 	pointer = Serialization::writeBytes(dest, pointer, (short)value.length());
 	return Serialization::writeBytes(dest, pointer, value.c_str());
+}
+
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<std::string> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, value.at(i));
+	}
+	return pointer;
 }
 
 std::byte Serialization::readByte(std::vector<std::byte> src, int pointer) {

@@ -27,11 +27,11 @@ void field::setName(const std::string name){
 }
 
 int field::getBytes(std::vector<std::byte>* dest, int pointer){
-    pointer = Serialization::writeBytes(dest, 0, this->storageType);
-    pointer = Serialization::writeBytes(dest, 0, this->nameLength);
-    pointer = Serialization::writeBytes(dest, 0, this->name);
-    pointer = Serialization::writeBytes(dest, 0, this->dataType);
-    pointer = Serialization::writeBytes(dest, 0, this->data);
+    pointer = Serialization::writeBytes(dest, pointer, this->storageType);
+    pointer = Serialization::writeBytes(dest, pointer, this->nameLength);
+    pointer = Serialization::writeBytes(dest, pointer, this->name);
+    pointer = Serialization::writeBytes(dest, pointer, this->dataType);
+    pointer = Serialization::writeBytes(dest, pointer, this->data);
     return pointer;
 }
 
@@ -67,6 +67,7 @@ field* field::Int(const std::string name, int value){
     Serialization::writeBytes(&f->data, 0, value);
     return f;
 }
+
 field* field::Double(const std::string name, double value){
     field* f =new field();
     f->setName(name);
@@ -74,6 +75,7 @@ field* field::Double(const std::string name, double value){
     Serialization::writeBytes(&f->data, 0, value);
     return f;
 }
+
 field* field::Boolean(const std::string name, bool value){
     field* f =new field();
     f->setName(name);
@@ -81,6 +83,7 @@ field* field::Boolean(const std::string name, bool value){
     Serialization::writeBytes(&f->data, 0, value);
     return f;
 }
+
 field* field::Int64(const std::string name, int64_t value){
     field* f =new field();
     f->setName(name);
