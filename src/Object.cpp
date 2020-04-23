@@ -12,15 +12,15 @@ void Object::setName(const std::string name){
     this->size+=this->nameLength;
 }
 
-void Object::push_field(field field){
-    this->fields.push_back(field);
-    this->size+=field.getSize();
+void Object::push_field(field* field){
+    this->fields.push_back(*field);
+    this->size+=field->getSize();
     this->fieldLength++;
 }
 
-void Object::push_array(Array array){
-    this->arrays.push_back(array);
-    this->size+=array.getSize();
+void Object::push_array(Array* array){
+    this->arrays.push_back(*array);
+    this->size+=array->getSize();
     this->arrayLength++;
 }
 

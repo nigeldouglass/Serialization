@@ -2,6 +2,7 @@
 
 void Array::setName(const std::string name){
     assert(this->name.size() < SHRT_MAX);
+    this->size = 1 + 2 + 0 + 4 + 1 + 4;
     this->nameLength = (short)name.size();
     this->name = toByte(name);
     this->size += this->name.size();
@@ -24,16 +25,7 @@ unsigned int Array::getSize(){
 }
 
 int Array::getDataSize(){
-    switch (this->dataType){
-        case Type::BYTE:      return (this->data.size() * Type::getSize(Type::BYTE));
-        case Type::SHORT:     return (this->data.size() * Type::getSize(Type::SHORT));
-        case Type::CHAR:      return (this->data.size() * Type::getSize(Type::CHAR));
-        case Type::INT:       return (this->data.size() * Type::getSize(Type::INT));
-        case Type::INT64:     return (this->data.size() * Type::getSize(Type::INT64));
-        case Type::DOUBLE:    return (this->data.size() * Type::getSize(Type::DOUBLE));
-        case Type::BOOLEAN:   return (this->data.size() * Type::getSize(Type::BOOLEAN));
-        default: assert(false);
-    }
+    return this->data.size();
 }
 
 Array* Array::Byte(const std::string name, std::vector<std::byte> value){

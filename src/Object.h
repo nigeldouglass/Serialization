@@ -16,8 +16,8 @@ class Object{
 
     public:
         Object(std::string name);
-        void push_field(field field);
-        void push_array(Array array);
+        void push_field(field* field);
+        void push_array(Array* array);
         unsigned int getSize();
         int getBytes(std::vector<std::byte>* dest, int pointer);
     private:
