@@ -1,7 +1,7 @@
 #include "Object.h"
 
 Object::Object(std::string name){
-    this->size = 1 + 2 + 0 + 2 + 2;
+    this->size = 1 + 2 + 0 + 4 + 2 + 2;
     this->setName(name);
 }
 
