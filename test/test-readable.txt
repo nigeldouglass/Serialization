@@ -1,0 +1,27 @@
+HEADER(DB)		44 42 
+TYPE(DATABASE)	04 
+NAMELENGHT		00 06 
+NAME(TESTDB)	54 65 73 74 44 42 
+SIZE			00 00 00 21 
+FIELDSIZE		00 01 
+								TYPE(FIELD)		01 
+								NAMELENGHT		00 04 
+								NAME(TEST)		54 65 73 74 
+								DATATYPE(INT)	04 
+								DATA(8)			00 00 00 08 
+								
+ARRAYSIZE		00 01 
+								TYPE(FIELD)		02 
+								NAMELENGHT		00 02
+                                NAME(T2)		54 32
+                                Size(4*4)		00 00 00 42
+								DATATYPE(INT)	04
+								DATACOUNT		00 00 00 04
+                                DATA
+								{
+												00 00 00 01
+												00 00 00 03
+												00 00 00 05 
+												00 00 00 07
+								}
+OBJECTSIZE		00 00

@@ -1,14 +1,5 @@
 #include "Object.h"
 
-std::vector<std::byte> toByte(const std::string str){
-    std::vector<std::byte> ret;
-    for(size_t i = 0; i < str.size(); i++){
-        uint8_t x = str.at(i);
-        ret.push_back((std::byte)x);
-    }
-    return ret;
-}
-
 Object::Object(std::string name){
     this->size = 1 + 2 + 0 + 2 + 2;
     this->setName(name);
@@ -33,14 +24,15 @@ void Object::push_array(Array array){
     this->arrayLength++;
 }
 
-int Object::getSize(){
-    this->size;
+unsigned int Object::getSize(){
+    return this->size;
 }
 
 int Object::getBytes(std::vector<std::byte>* dest, int pointer){
     pointer = Serialization::writeBytes(dest, pointer, this->storageType);
     pointer = Serialization::writeBytes(dest, pointer, this->nameLength);
     pointer = Serialization::writeBytes(dest, pointer, this->name);
+    pointer = Serialization::writeBytes(dest, pointer, this->getSize());
     pointer = Serialization::writeBytes(dest, pointer, this->fieldLength);
     for(auto& field : this->fields){
         pointer = field.getBytes(dest, pointer);

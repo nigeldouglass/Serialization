@@ -24,6 +24,8 @@ class Serialization{
         static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<short> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, int value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int> value);
+                static int writeBytes(std::vector<std::byte>* dest, int pointer, unsigned int value);
+        static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<unsigned int> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, int64_t value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<int64_t> value);
         static int writeBytes(std::vector<std::byte>* dest, int pointer, double value);

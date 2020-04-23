@@ -12,6 +12,7 @@ class storageType{
         static const std::byte FIELD      = (std::byte)1;
         static const std::byte ARRAY      = (std::byte)2;
         static const std::byte OBJECT     = (std::byte)3;
+        static const std::byte DATABASE   = (std::byte)4;
     private:
 };
 

@@ -1,20 +1,5 @@
 #include "Field.h"
 
-std::vector<std::byte> toByte(const std::string str){
-    std::vector<std::byte> ret;
-    for(size_t i = 0; i < str.size(); i++){
-        uint8_t x = str.at(i);
-        ret.push_back((std::byte)x);
-    }
-    return ret;
-}
-
-std::vector<std::byte> toByte(const int integer){
-    std::vector<std::byte> ret;
-    ret.push_back((std::byte)integer);
-    return ret;
-}
-
 int field::getSize(){
     assert(this->data.size() == Type::getSize(this->dataType));
     return 1 + 2 + this->name.size() + 1 + this->data.size();

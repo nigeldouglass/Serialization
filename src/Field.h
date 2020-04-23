@@ -10,6 +10,7 @@
 #include "storageType.h"
 #include "type.h"
 #include "Serialization.h"
+#include "Utils.h"
 
 std::vector<std::byte> toByte(const std::string str);
 std::vector<std::byte> toByte(int integer);

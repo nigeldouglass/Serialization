@@ -74,6 +74,18 @@ int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::ve
 	return pointer;
 }
 
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, unsigned int value) {
+	pointer = Serialization::writeBytes(dest, pointer, (int)value);
+	return pointer;
+}
+
+int Serialization::writeBytes(std::vector<std::byte>* dest, int pointer, std::vector<unsigned int> value) {
+	for(size_t i = 0; i<value.size();i++){
+		pointer = Serialization::writeBytes(dest, pointer, (int)value.at(i));
+	}
+	return pointer;
+}
+
 /*
 *	Int64
 */

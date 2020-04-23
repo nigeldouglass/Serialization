@@ -10,13 +10,14 @@
 #include "storageType.h"
 #include "type.h"
 #include "Serialization.h"
+#include "Utils.h"
 
 class Array{
 
     public:
         void setName(const std::string name);
         int getBytes(std::vector<std::byte>* dest, int pointer);
-        int getSize();
+        unsigned int getSize();
         int getDataSize();
         static Array* Byte(const std::string name,      std::vector<std::byte> value);
         static Array* Short(const std::string name,     std::vector<short> value);
@@ -32,8 +33,9 @@ class Array{
         short nameLength;
         std::vector<std::byte> name;
         std::byte dataType;
-        int64_t dataCount;
+        unsigned int dataCount;
         std::vector<std::byte> data;
+        unsigned int size;
 };
 
 #endif
