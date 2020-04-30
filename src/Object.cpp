@@ -1,7 +1,7 @@
 #include "Object.h"
 
 Object::Object(std::string name){
-    this->size = 1 + 2 + 0 + 4 + 2 + 2;
+    this->size = 1 + 2 + 0 + 4 + 2 + 2 + 2;
     this->setName(name);
 }
 
@@ -10,12 +10,21 @@ void Object::setName(const std::string name){
     this->nameLength = (short)name.size();
     this->name = toByte(name);
     this->size+=this->nameLength;
+    this->fieldLength = 0;
+    this->fieldNoNameLength = 0;
+    this->arrayLength = 0;
 }
 
 void Object::push_field(field* field){
     this->fields.push_back(*field);
     this->size+=field->getSize();
     this->fieldLength++;
+}
+
+void Object::push_fieldNoName(FieldNoName* field){
+    this->fieldNoNames.push_back(*field);
+    this->size+=field->getSize();
+    this->fieldNoNameLength++;
 }
 
 void Object::push_array(Array* array){
@@ -35,6 +44,10 @@ int Object::getBytes(std::vector<std::byte>* dest, int pointer){
     pointer = Serialization::writeBytes(dest, pointer, this->getSize());
     pointer = Serialization::writeBytes(dest, pointer, this->fieldLength);
     for(auto& field : this->fields){
+        pointer = field.getBytes(dest, pointer);
+    }
+    pointer = Serialization::writeBytes(dest, pointer, this->fieldNoNameLength);
+    for(auto& field : this->fieldNoNames){
         pointer = field.getBytes(dest, pointer);
     }
     pointer = Serialization::writeBytes(dest, pointer, this->arrayLength);

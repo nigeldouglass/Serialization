@@ -10,6 +10,7 @@
 #include "storageType.h"
 #include "Field.h"
 #include "Array.h"
+#include "FieldNoName.h"
 #include "Utils.h"
 
 class Object{
@@ -17,6 +18,7 @@ class Object{
     public:
         Object(std::string name);
         void push_field(field* field);
+        void push_fieldNoName(FieldNoName* field);
         void push_array(Array* array);
         unsigned int getSize();
         int getBytes(std::vector<std::byte>* dest, int pointer);
@@ -27,6 +29,8 @@ class Object{
         std::vector<std::byte> name;
         short fieldLength;
         std::vector<field> fields;
+        short fieldNoNameLength;
+        std::vector<FieldNoName> fieldNoNames;
         short arrayLength;
         std::vector<Array> arrays;
         unsigned int size;

@@ -17,11 +17,11 @@ class Database{
 
     public:
         Database(std::string name);
-        void push_field(field* field);
-        void push_array(Array* array);
-        void push_object(Object* object);
-        unsigned int getSize();
-        int getBytes(std::vector<std::byte>* dest, int pointer);
+        virtual void push_field(field* field);
+        virtual void push_array(Array* array);
+        virtual void push_object(Object* object);
+        virtual unsigned int getSize();
+        virtual int getBytes(std::vector<std::byte>* dest, int pointer);
     private:
         std::vector<std::byte> HEADER;
         void setName(std::string name);

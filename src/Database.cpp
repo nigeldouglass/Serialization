@@ -5,6 +5,9 @@ Database::Database(std::string name){
     //HEADER + Type + nameLenght + name + size + fieldSize + arraySize + objectSize
     this->size = 2 + 1 + 2 + 0 + 4 + 2 + 2 + 2;
     this->setName(name);
+    this->fieldLength = 0;
+    this->arrayLength = 0;
+    this->objectLength = 0;
 }
 
 void Database::setName(const std::string name){
